@@ -112,10 +112,9 @@ def main():
     sorted_days = sorted(days, key=lambda d: len(d)) ## we sort the days based on the number of impossible timeslots in that day thus if we have an empty day as in the example Vendredi/Friday we return it first
     for day in sorted_days:
         from_t, to_t = find_slot(day)
-        print(type(from_t))
         if from_t != -1 and to_t != -1:
             print(days_dict[days.index(day)+1],"de",from_t,"à",to_t)
             break
-        
+
 if __name__ == '__main__':
     main()
