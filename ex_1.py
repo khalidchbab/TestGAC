@@ -94,7 +94,6 @@ def find_slot(day:list) ->tuple:
             else:
                 slots_day.append(f)
                 slots_day.append(t)
-        print("slots of day : ", slots_day)
         for i in range(1,len(slots_day)-1,2):
             diff = calculate_difference(slots_day[i],slots_day[i+1])
             if diff >= 60:
@@ -107,14 +106,16 @@ def find_slot(day:list) ->tuple:
 
 
 def main():
-    impo_time_slots = ['6', '2 08:39-09:48', '2 08:12-11:08', '1 13:09-16:27', '4 15:18-15:23', '3 14:05-17:51', '2 13:19-17:18']
+    # impo_time_slots = ['6', '2 08:39-09:48', '2 08:12-11:08', '1 13:09-16:27', '4 15:18-15:23', '3 14:05-17:51', '2 13:19-17:18'] # Vendredi Empty
+    # impo_time_slots = ['6', '2 08:39-09:48', '2 08:12-11:08', '1 13:09-16:27', '4 15:18-15:23', '3 14:05-17:51', '2 13:19-17:18', '5 08:19-17:18']
+    impo_time_slots = ['6', '2 08:39-09:48', '2 08:12-11:08', '1 08:09-16:27', '4 15:18-15:23', '3 14:05-17:51', '2 13:19-17:18', '5 08:19-17:18']
     days = days_time(impo_time_slots)
     sorted_days = sorted(days, key=lambda d: len(d)) ## we sort the days based on the number of impossible timeslots in that day thus if we have an empty day as in the example Vendredi/Friday we return it first
+    print(impo_time_slots)
     for day in sorted_days:
         from_t, to_t = find_slot(day)
         if from_t != -1 and to_t != -1:
             print(days_dict[days.index(day)+1],"de",from_t,"à",to_t)
-            break
-
+            break # Remove if you want to see for each possible day
 if __name__ == '__main__':
     main()
